@@ -1,0 +1,37 @@
+{% extends "search/header.html" %}
+<!-- delete/debug catagory tag -->
+{% block content %}
+<nav>
+<a href="/",  > Search Again </a>
+</nav>
+<h2> Search Results:</h2>
+
+
+<ol>
+{% for key in place %}
+	<!-- lists: name, phone #
+				rating
+				Picture
+				Yelp Page 
+				TODO: add location-->
+  </body>
+	<li>
+	{{key.name}}
+	{{key.display_phone}} <br/>
+	{{key.mobile_url}} <br/>
+	<img src={{key.rating_img_url_large}} alt={{key.name}}> <br/>
+	Rating: {{key.rating}} / 5.0
+	<br/>
+	<img src={{key.image_url}} alt={{key.name}} style="width:128px;height:128px;"> <br/>
+	<a href={{key.url}}> {{key.name}} Yelp Page</a> <br/>
+
+	{{key.cross_streets}}<br/>
+	{% if key.is_claimed %}
+		<a href={{key.eat24_url}}> Deal: {{key.menu_provider}}</a> <br/>
+	{% endif %}
+	</li>
+	<br/>
+{% endfor %}
+</p>
+<a href="/"> Search Again</a>
+{% endblock %}

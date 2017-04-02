@@ -1,0 +1,73 @@
+{% extends "search/header.html" %}
+{% block content %}
+<style>
+td, th {
+padding-left: 150px;
+padding-right: 150px;
+}
+</style>
+<table>
+<tr>
+	<td>
+		<div>
+		<form method = 'POST' action='/results/'> {% csrf_token %}
+			Location (Required): <br/> <input type = "text" name="location" id = "location" value ="" required /> <br/>
+			Type of Experience (food, shopping, etc): <br/> <input type = "text" name = "term" id = "term" value = "" /> <br/>
+			Distance <br/>
+  			<input list="distance" name="distance">
+				<datalist id="distance">
+				<option value= "5 mi or 8 km">
+				<option value="10 mi or 16 km">
+				<option value="15 mi or 24 km">
+				<option value= "20 mi or 32 km">
+				<option value= "25 mi or 40 km">
+				</datalist>
+			</input>
+		<br/>Limit: <br/> <input type="int" name = "limit" id="limit" value="" /> <br/>
+
+		Sort: <br/> 
+		<input list="sort" name="sort">
+			<datalist id="sort">
+				<option value= "By Best Match">
+				<option value="By Distance">
+				<option value="Highest Rated">
+			</datalist>
+			<br/>
+			<br/>
+		<input type="checkbox" name="deal" value=1>Search only for businesses with deals<br/>
+		</input>
+		<br/> <input type = "submit" value = "Search" /> <br/>
+
+
+</form>
+</div>
+</td>
+	<td>
+		<div>
+			<h3> Top Searches: </h3>
+			<ul>
+			{% for tag in trends %}
+				<li>
+				<p> {{tag}} </p> 
+				</li>
+			{% endfor %}
+			</ul>
+		</div>
+	</td>
+	<td>
+		<div>
+			<h3> Top Categories: </h3>
+			<ul>
+			{% for cate in category %}
+				<li>
+				<p> {{cate}} </p>
+				</li>
+			{% endfor %}
+			</ul>
+		</div>
+	</td>
+	
+</tr>
+<table>
+
+{% endblock %}	
